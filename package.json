@@ -1,0 +1,23 @@
+{
+  "name": "chrome_plugin",
+  "version": "1.0.0",
+  "description": "长草期实现的一些简单chrome插件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuneAndGreen/chrome_plugin.git"
+  },
+  "keywords": [
+    "chrome",
+    "plugin"
+  ],
+  "author": "june_01",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuneAndGreen/chrome_plugin/issues"
+  },
+  "homepage": "https://github.com/JuneAndGreen/chrome_plugin#readme"
+}

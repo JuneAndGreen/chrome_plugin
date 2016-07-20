@@ -1,0 +1,81 @@
+
+.engcard {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+	width: 600px;
+	background: #fff;
+	border: 1px solid #000;
+	font-family: 'Microsoft YAHEI', '微软雅黑';
+	overflow: hidden
+	z-index: 9999999999;
+}
+
+/* 有道翻译 */
+.engcard_translation {
+	padding: 15px;
+	width: 100%;
+	box-sizing: border-box;
+	line-height: 1.4;
+	font-size: 16px;
+	color: #333;
+}
+.engcard_translation_0 {
+	background: #dff0d8;
+}
+.engcard_translation_1 {
+	background: #d9edf7;
+}
+.engcard_translation_2 {
+	background: #fcf8e3;
+}
+.engcard_translation_3 {
+	background: #f2dede;
+}
+.engcard_translation_4 {
+	background: #f5f5f5;
+}
+
+/* 有道词典 */
+.engcard_basic {
+	padding: 15px;
+	width: 100%;
+	box-sizing: border-box;
+	line-height: 1.4;
+	font-size: 14px;
+}
+.engcard_basic_title {
+	font-size: 16px;
+	font-weight: bold;
+}
+.engcard_basic_explain {
+	margin-left: 20px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.engcard_basic_phonetic {
+	padding: 20px 20px 0;
+}
+.engcard_basic_phonetic_tip {
+	margin-right: 15px;
+	padding: 5px 8px;
+	background: #35a1d4;
+	color: #fff;
+}
+
+/* 网络释义 */
+.engcard_web {
+	padding: 15px;
+	width: 100%;
+	box-sizing: border-box;
+	line-height: 1.4;
+	font-size: 14px;
+	border-top: 1px dashed #ccc;
+}
+.engcard_web_ul {
+	padding-left: 20px;
+	list-style-type: decimal;
+}
+.engcard_web_key {
+	color: #35a1d4;
+}
