@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+
+  "name": "engcard",
+  "description": "This extension for translate other languages to chinese or chinese to english",
+  "version": "1.0",
+
+  "permissions": [
+    "http://*/*", 
+    "https://*/*",
+    "https://fanyi.youdao.com/",
+    "http://fanyi.youdao.com/"
+  ],
+  "content_scripts": [{
+    "matches": ["http://*/*", "https://*/*"],
+    "css": ["insert.css"],
+    "js": ["insert.js"]
+  }]
+}

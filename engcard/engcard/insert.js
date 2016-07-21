@@ -1,32 +1,6 @@
 'use strict';
 
 (function() {
-
-	/*
-		{
-	    "errorCode":0
-	    "query":"good",
-	    "translation":["好"], // 有道翻译
-	    "basic":{ // 有道词典-基本词典
-	        "phonetic":"gʊd"
-	        "uk-phonetic":"gʊd" //英式发音
-	        "us-phonetic":"ɡʊd" //美式发音
-	        "explains":[
-	            "好处",
-	            "好的"
-	            "好"
-	        ]
-	    },
-	    "web":[ // 有道词典-网络释义
-	        {
-	            "key":"good",
-	            "value":["良好","善","美好"]
-	        },
-	        {...}
-	    ]
-		}
-	*/
-
 	let card;
 	let clickIsFromCard = false; // 点击事件是否来自卡片
 	const codeMap = {
@@ -41,6 +15,8 @@
 	 * 封装ajax请求
 	 */
 	let send = function(text, callback) {
+		text = encodeURIComponent(text);
+
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function(evt) {
 			if(xhr.readyState==4 && xhr.status==200) {
@@ -85,9 +61,9 @@
 				let div = document.createElement('div');
 				div.className = 'engcard_basic';
 
-				let phonetic = basic.phonetic ? `[${basic.phonetic}]` : '';
-				let ukPhonetic = basic['uk-phonetic'] ? `英:[${basic['uk-phonetic']}]` : ''; // 英式发音
-				let usPhonetic = basic['us-phonetic'] ? `美:[${basic['us-phonetic']}]` : ''; // 美式发音
+				let phonetic = basic.phonetic ? `<span class="engcard_basic_phonetic_tip">[${basic.phonetic}]</span>` : '';
+				let ukPhonetic = basic['uk-phonetic'] ? `<span class="engcard_basic_phonetic_tip">英:[${basic['uk-phonetic']}]</span>` : ''; // 英式发音
+				let usPhonetic = basic['us-phonetic'] ? `<span class="engcard_basic_phonetic_tip">美:[${basic['us-phonetic']}]</span>` : ''; // 美式发音
 
 				let explains = (basic.explains || []).map((item) => {
 					return `<div class="engcard_basic_explain">${item}</div>`;
@@ -97,9 +73,9 @@
 					<div class="engcard_basic_title">释义 :</div>
 					${explains}
 					<div class="engcard_basic_phonetic">
-						<span class="engcard_basic_phonetic_tip">${phonetic}</span>
-						<span class="engcard_basic_phonetic_tip">${ukPhonetic}</span>
-						<span class="engcard_basic_phonetic_tip">${usPhonetic}</span>
+						${phonetic}
+						${ukPhonetic}
+						${usPhonetic}
 					</div>
 				</div>`;
 
@@ -172,13 +148,13 @@
 		let cw = card.clientWidth;
 		let ch = card.clientHeight;
 
-		// 默认在选中文字上方
+		// 默认在选中文字上方25px
 		let x = mx - cw/2;
-		let y = my - ch - 20;
+		let y = my - ch - 25;
 
 		// 位置调整
-		x = x < 0 ? 0 : x;
-		y = y < 0 ? my + 20 : y;
+		x = x < 0 ? 5 : x;
+		y = y < 0 ? my + 25 : y;
 
 		return {x, y};
 	};
