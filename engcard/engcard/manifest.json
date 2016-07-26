@@ -5,7 +5,18 @@
   "description": "This extension for translate other languages to chinese or chinese to english",
   "version": "1.0",
 
+  "browser_action": {
+    "default_title": "engcard"
+  },
+
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+
   "permissions": [
+    "tabs",
     "http://*/*", 
     "https://*/*",
     "https://fanyi.youdao.com/",

@@ -46,6 +46,11 @@
 	line-height: 1.4;
 	font-size: 14px;
 }
+.engcard_basic_query {
+	margin-left: 20px;
+	font-size: 20px;
+	font-weight: bold;
+}
 .engcard_basic_title {
 	font-size: 16px;
 	font-weight: bold;
@@ -56,9 +61,18 @@
 	font-weight: bold;
 }
 .engcard_basic_phonetic {
-	padding: 20px 20px 0;
+	padding: 10px 20px 10px;
+}
+.engcard_basic_phonetic:after{
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+	overflow: hidden;
+	content: ".";
 }
 .engcard_basic_phonetic_tip {
+	float: left;
 	margin-right: 15px;
 	padding: 5px 8px;
 	background: #35a1d4;

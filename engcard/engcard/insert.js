@@ -61,22 +61,23 @@
 				let div = document.createElement('div');
 				div.className = 'engcard_basic';
 
-				let phonetic = basic.phonetic ? `<span class="engcard_basic_phonetic_tip">[${basic.phonetic}]</span>` : '';
-				let ukPhonetic = basic['uk-phonetic'] ? `<span class="engcard_basic_phonetic_tip">英:[${basic['uk-phonetic']}]</span>` : ''; // 英式发音
-				let usPhonetic = basic['us-phonetic'] ? `<span class="engcard_basic_phonetic_tip">美:[${basic['us-phonetic']}]</span>` : ''; // 美式发音
+				let phonetic = basic.phonetic ? `<div class="engcard_basic_phonetic_tip">[${basic.phonetic}]</div>` : '';
+				let ukPhonetic = basic['uk-phonetic'] ? `<div class="engcard_basic_phonetic_tip">英:[${basic['uk-phonetic']}]</div>` : ''; // 英式发音
+				let usPhonetic = basic['us-phonetic'] ? `<div class="engcard_basic_phonetic_tip">美:[${basic['us-phonetic']}]</div>` : ''; // 美式发音
 
 				let explains = (basic.explains || []).map((item) => {
 					return `<div class="engcard_basic_explain">${item}</div>`;
 				}).join('');
 
 				let html = `<div>
-					<div class="engcard_basic_title">释义 :</div>
-					${explains}
+					<div class="engcard_basic_query">${data.query}</div>
 					<div class="engcard_basic_phonetic">
 						${phonetic}
 						${ukPhonetic}
 						${usPhonetic}
 					</div>
+					<div class="engcard_basic_title">释义 :</div>
+					${explains}
 				</div>`;
 
 				div.innerHTML = html;
@@ -142,8 +143,8 @@
 	 * 获取显示坐标
 	 */
 	let getPosition = function(evt, card) {
-		let mx = evt.clientX;
-		let my = evt.clientY;
+		let mx = evt.pageX;
+		let my = evt.pageY;
 
 		let cw = card.clientWidth;
 		let ch = card.clientHeight;
