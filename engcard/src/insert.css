@@ -1,98 +1,94 @@
-
 .engcard {
-	position: absolute;
-	top: -9999px;
-	left: -9999px;
-	width: 600px;
-	background: #fffefb;
-	border: 1px solid #dddac9;
-	border-radius: 5px;
-	box-shadow: 2px 2px 10px #aaa;
-	font-family: 'Microsoft YAHEI', '微软雅黑';
-	overflow: hidden
-	z-index: 9999999999;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  width: 600px;
+  background: #fffefb;
+  border: 1px solid #dddac9;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px #aaa;
+  font-family: 'Microsoft YAHEI', '微软雅黑';
+  overflow: hidden;
+  z-index: 9999999999;
 }
-
 /* 有道翻译 */
 .engcard_translation {
-	padding: 15px;
-	width: 100%;
-	box-sizing: border-box;
-	line-height: 1.4;
-	font-size: 16px;
-	color: #333;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 1.4;
+  font-size: 16px;
+  color: #333;
 }
 .engcard_translation_0 {
-	background: #dff0d8;
+  background: #dff0d8;
 }
 .engcard_translation_1 {
-	background: #d9edf7;
+  background: #d9edf7;
 }
 .engcard_translation_2 {
-	background: #fcf8e3;
+  background: #fcf8e3;
 }
 .engcard_translation_3 {
-	background: #f2dede;
+  background: #f2dede;
 }
 .engcard_translation_4 {
-	background: #f5f5f5;
+  background: #f5f5f5;
 }
-
 /* 有道词典 */
 .engcard_basic {
-	padding: 15px;
-	width: 100%;
-	box-sizing: border-box;
-	line-height: 1.4;
-	font-size: 14px;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 1.4;
+  font-size: 14px;
 }
 .engcard_basic_query {
-	margin-left: 20px;
-	font-size: 20px;
-	font-weight: bold;
+  margin-left: 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
 .engcard_basic_title {
-	font-size: 16px;
-	font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 .engcard_basic_explain {
-	margin-left: 20px;
-	font-size: 16px;
-	font-weight: bold;
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: bold;
 }
 .engcard_basic_phonetic {
-	padding: 10px 20px 10px;
+  padding: 10px 20px 10px;
 }
-.engcard_basic_phonetic:after{
-	display: block;
-	clear: both;
-	visibility: hidden;
-	height: 0;
-	overflow: hidden;
-	content: ".";
+.engcard_basic_phonetic:after {
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  content: ".";
 }
 .engcard_basic_phonetic_tip {
-	float: left;
-	margin-right: 15px;
-	padding: 5px 8px;
-	background: #35a1d4;
-	color: #fff;
-	border-radius: 3px;
+  float: left;
+  margin-right: 15px;
+  padding: 5px 8px;
+  background: #35a1d4;
+  color: #fff;
+  border-radius: 3px;
 }
-
 /* 网络释义 */
 .engcard_web {
-	padding: 15px;
-	width: 100%;
-	box-sizing: border-box;
-	line-height: 1.4;
-	font-size: 14px;
-	border-top: 1px dashed #ccc;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 1.4;
+  font-size: 14px;
+  border-top: 1px dashed #ccc;
 }
 .engcard_web_ul {
-	padding-left: 20px;
-	list-style-type: decimal;
+  padding-left: 20px;
+  list-style-type: decimal;
 }
 .engcard_web_key {
-	color: #35a1d4;
+  color: #35a1d4;
 }
