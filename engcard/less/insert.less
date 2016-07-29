@@ -45,39 +45,45 @@
 	box-sizing: border-box;
 	line-height: 1.4;
 	font-size: 14px;
-}
-.engcard_basic_query {
-	margin-left: 20px;
-	font-size: 20px;
-	font-weight: bold;
-}
-.engcard_basic_title {
-	font-size: 16px;
-	font-weight: bold;
-}
-.engcard_basic_explain {
-	margin-left: 20px;
-	font-size: 16px;
-	font-weight: bold;
-}
-.engcard_basic_phonetic {
-	padding: 10px 20px 10px;
-}
-.engcard_basic_phonetic:after{
-	display: block;
-	clear: both;
-	visibility: hidden;
-	height: 0;
-	overflow: hidden;
-	content: ".";
-}
-.engcard_basic_phonetic_tip {
-	float: left;
-	margin-right: 15px;
-	padding: 5px 8px;
-	background: #35a1d4;
-	color: #fff;
-	border-radius: 3px;
+
+	.engcard_basic_query {
+		margin-left: 20px;
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	.engcard_basic_title {
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.engcard_basic_explain {
+		margin-left: 20px;
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.engcard_basic_phonetic {
+		padding: 10px 20px 10px;
+
+		&:after{
+			display: block;
+			clear: both;
+			visibility: hidden;
+			height: 0;
+			overflow: hidden;
+			content: ".";
+		}
+
+		.engcard_basic_phonetic_tip {
+			float: left;
+			margin-right: 15px;
+			padding: 5px 8px;
+			background: #35a1d4;
+			color: #fff;
+			border-radius: 3px;
+		}
+	}
 }
 
 /* 网络释义 */
@@ -88,11 +94,13 @@
 	line-height: 1.4;
 	font-size: 14px;
 	border-top: 1px dashed #ccc;
-}
-.engcard_web_ul {
-	padding-left: 20px;
-	list-style-type: decimal;
-}
-.engcard_web_key {
-	color: #35a1d4;
+
+	.engcard_web_ul {
+		padding-left: 20px;
+		list-style-type: decimal;
+	}
+	
+	.engcard_web_key {
+		color: #35a1d4;
+	}
 }

@@ -7,7 +7,7 @@ const less = require('gulp-less');
 function jsx2js(filename) {
 	return gulp.src(filename)
     .pipe(react({harmony: true, es6module: true}))
-    .pipe(gulp.dest('./engcard/background/build/'));
+    .pipe(gulp.dest('./src/background/build/'));
 }
 
 function insertLess2css() {
@@ -16,8 +16,8 @@ function insertLess2css() {
 		.pipe(gulp.dest('./src/'));
 }
 
-function indexLess2css() {
-	return gulp.src('./less/index.less')
+function backgroundLess2css() {
+	return gulp.src('./less/background.index.less')
 		.pipe(less())
 		.pipe(gulp.dest('./src/background/res/'));
 }
@@ -31,18 +31,18 @@ gulp.task('initInsertLess', () => {
 	return insertLess2css();
 });
 
-gulp.task('initIndexLess', () => {
-	return indexLess2css();
+gulp.task('initBackgroundLess', () => {
+	return backgroundLess2css();
 });
 
 // 监听
 
-gulp.task('default', ['initJsx', 'initInsertLess', 'initIndexLess'], function() {
-	return gulp.watch(['./jsx/*.jsx', './less/insert.less', './less/index.less'], (event) => {
+gulp.task('default', ['initJsx', 'initInsertLess', 'initBackgroundLess'], function() {
+	return gulp.watch(['./jsx/*.jsx', './less/insert.less', './less/background.index.less'], (event) => {
 		if(event.path.indexOf('insert.less') !== -1) {
 			return insertLess2css();
-		} else if(event.path.indexOf('index.less') !== -1) {
-			return indexLess2css();
+		} else if(event.path.indexOf('background') !== -1) {
+			return backgroundLess2css();
 		} else {
 			return jsx2js(event.path);
 		}

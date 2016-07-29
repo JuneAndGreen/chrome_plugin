@@ -1,0 +1,307 @@
+@bottom_block_box_shadow: 2px 2px 10px #aaa; /* 下部分的块级阴影 */
+@font_family: 'Microsoft YAHEI', '微软雅黑'; /* 通用微软雅黑 */
+
+/* 单行省略号 */
+.ellipsis {
+	overflow: hidden;
+	word-wrap: normal;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+html, body{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	color: #333;
+	font-family: @font_family;
+}
+
+.top {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: 90px;
+	border-bottom: 1px solid #dddac9;
+	box-shadow: 0px -2px 15px #aaa;
+	z-index: 10;
+
+	/* 输入框 */
+	.ipt_box {
+		display: flex;
+		position: relative;
+		margin: 20px auto;
+		width: 70%;
+		height: 50px;
+		.ipt {
+			flex: 1;
+			padding: 0 20px;
+			height: 100%;
+			box-sizing: border-box;
+			border: none;
+			outline: none;
+			font-size: 18px;
+			border: 1px solid #dddac9;
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;
+			font-family: @font_family;
+
+			&::-webkit-input-placeholder {
+				color: #ccc;
+				font-family: @font_family;
+			}
+		}
+		.btn {
+			width: 100px;
+			height: 100%;
+			background: #fffefb;
+			box-sizing: border-box;
+			border: none;
+			outline: none;
+			border: 1px solid #dddac9;
+			border-left: none;
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+			cursor: pointer;
+
+			.icon-search {
+				display: block;
+				width: 30px;
+				height: 30px;
+				margin: 0 auto;
+				background: url(./search_gray.png);
+				background-size: 30px auto;
+			}
+
+			&:hover {
+				background: #dddac9;
+			}
+
+			&:hover .icon-search {
+				background: url(./search_white.png);
+				background-size: 30px auto;
+			}
+		}
+	}
+}
+
+.bottom {
+	position: absolute;
+	top: 90px;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: #fffefb;
+	overflow: scroll;
+	z-index: 5;
+
+	/* 滚动条 */
+	&::-webkit-scrollbar {
+	  width: 5px;
+	}
+
+	&::-webkit-scrollbar-track {
+	  background: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+	  background-color: #ccc;
+	  border-radius: 2px;
+	  width: 4px;
+	}
+
+	.block_cnt {
+		position: relative;
+		width: 80%;
+		margin: 20px auto;
+	}
+
+	.left_cnt {
+		width: 65%;
+	}
+
+	.right_cnt {
+		width: 35%;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	/* 翻译 */
+	.trans_box {
+		width: 80%;
+		margin: 20px auto;
+		box-shadow: @bottom_block_box_shadow;
+
+		.trans {
+			padding: 15px 20px;
+			font-size: 18px;
+			word-break: break-all;
+		}
+
+		.trans_0 {
+			background: #dff0d8;
+		}
+
+		.trans_1 {
+			background: #d9edf7;
+		}
+
+		.trans_2 {
+			background: #fcf8e3;
+		}
+
+		.trans_3 {
+			background: #f2dede;
+		}
+
+		.trans_4 {
+			background: #f5f5f5;
+		}
+	}
+
+	/* 释义 */
+	.exps_box {
+		padding: 20px;
+		width: 100%;
+		background: #fff;
+		box-sizing: border-box;
+		box-shadow: @bottom_block_box_shadow;
+
+		.query {
+			height: 25px;
+			line-height: 25px;
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+		.pron {
+			margin-top: 5px;
+
+			&:after {
+				display: block;
+				clear: both;
+				visibility: hidden;
+				height: 0;
+				overflow: hidden;
+				content: ".";
+			}
+
+			.pron_item {
+				float: left;
+				margin-right: 10px;
+				padding: 5px 8px;
+				border-radius: 3px;
+				background: #35a1d4;
+				font-size: 14px;
+				box-sizing: border-box;
+				color: #fff;
+			}
+		}
+
+		.exps_title {
+			margin-top: 8px;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		.exps {
+			margin: 0;
+			padding: 0;
+			list-style-type: disc;
+
+			.exp {
+				margin-left: 20px;
+				font-size: 18px;
+				word-break: break-all;
+			}
+		}
+	}
+
+	/* 网络释义 */
+	.nets_box {
+		margin-top: 20px;
+		padding: 20px;
+		width: 100%;
+		font-size: 16px;
+		background: #fff;
+		box-sizing: border-box;
+		box-shadow: @bottom_block_box_shadow;
+
+		.nets {
+			margin: 5px 0 0 0;
+			padding: 0 0 0 20px;
+			list-style-type: decimal;
+
+			.net {
+				line-height: 1.6;
+
+				.net_key {
+					margin-right: 5px;
+					color: #35a1d4;
+				}
+
+				.net_val {
+					margin-left: 5px;
+					word-break: break-all;
+				}
+			}
+		}
+		
+	}
+
+	/* 历史记录 */
+	.hists_box {
+		margin-left: 20px;
+		padding: 20px;
+		background: #fff;
+		box-shadow: @bottom_block_box_shadow;
+
+		.hists {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+
+			.hist {
+				position: relative;
+
+				a{
+					display: block;
+					padding: 0 10px 0 30px;
+					width: 100%;
+					height: 30px;
+					line-height: 30px;
+					font-size: 16px;
+					box-sizing: border-box;
+					text-decoration: none;
+					color: #333;
+					cursor: pointer;
+
+					.ellipsis;
+				}
+
+				.icon-search {
+					display: block;
+					position: absolute;
+					top: 7px;
+					left: 10px;
+					width: 15px;
+					height: 15px;
+					background: url(./search.png);
+					background-size: 15px auto;
+				}
+
+				&:hover a {
+					background: #35a1d4;
+					color: #fff;
+				}
+
+				&:hover .icon-search {
+					background: url(./search_white.png);
+					background-size: 15px auto;
+				}
+			}
+		}
+	}
+}
