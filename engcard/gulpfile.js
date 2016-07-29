@@ -39,12 +39,12 @@ gulp.task('initBackgroundLess', () => {
 
 gulp.task('default', ['initJsx', 'initInsertLess', 'initBackgroundLess'], function() {
 	return gulp.watch(['./jsx/*.jsx', './less/insert.less', './less/background.index.less'], (event) => {
-		if(event.path.indexOf('insert.less') !== -1) {
-			return insertLess2css();
-		} else if(event.path.indexOf('background') !== -1) {
-			return backgroundLess2css();
-		} else {
+		if(event.path.indexOf('.jsx') !== -1) {
 			return jsx2js(event.path);
+		} else if(event.path.indexOf('insert.less') !== -1) {
+			return insertLess2css();
+		} else {
+			return backgroundLess2css();
 		}
   });
 });
