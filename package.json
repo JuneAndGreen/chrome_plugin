@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/JuneAndGreen/chrome_plugin/issues"
   },
-  "homepage": "https://github.com/JuneAndGreen/chrome_plugin#readme"
+  "homepage": "https://github.com/JuneAndGreen/chrome_plugin#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-react": "^3.1.0"
+  }
 }

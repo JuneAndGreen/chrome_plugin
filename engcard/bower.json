@@ -1,5 +1,7 @@
 {
   "name": "chrome_plugin",
   "version": "1.0.0",
-  "dependencies": {}
+  "dependencies": {
+    "react": "~15.2.1"
+  }
 }
