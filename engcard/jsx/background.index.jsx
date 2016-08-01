@@ -16,19 +16,27 @@ const Ipts = React.createClass({
  * 翻译组件
  */
 const Trans = React.createClass({
+	getInitialState: function() {
+    return {trans: [
+    	'今天天气不错',
+    	'今天天气不错',
+    	'今天天气不错',
+    	'今天天气不错',
+    	'今天天气不错',
+    	'今天天气不错',
+    	'今天天气不错',
+    	'今天天气不错',
+    	'今天天气不错'
+    ]};
+  },
   render: function() {
     return (
       <div className="trans_box">
-				<div className="trans trans_0">今天天气不错</div>
-				<div className="trans trans_1">今天天气不错</div>
-				<div className="trans trans_2">今天天气不错</div>
-				<div className="trans trans_3">今天天气不错</div>
-				<div className="trans trans_4">今天天气不错</div>
-				<div className="trans trans_0">今天天气不错</div>
-				<div className="trans trans_1">今天天气不错</div>
-				<div className="trans trans_2">今天天气不错</div>
-				<div className="trans trans_3">今天天气不错</div>
-				<div className="trans trans_4">今天天气不错</div>
+      	{
+      		this.state.trans.map((tran, index) => {
+      			return (<div className={'trans trans_' + index}>{tran}</div>);
+      		})
+      	}
 			</div>
     );
   }
@@ -38,21 +46,42 @@ const Trans = React.createClass({
  * 释义组件
  */
 const Exps = React.createClass({
+	getInitialState: function() {
+    return {
+    	query: 'test',
+    	phonetic: 'yahei, xx',
+    	ukPhonetic: 'sss',
+    	usPhonetic: 'fff',
+    	exps: [
+    		'cc',
+    		'ss',
+    		'gg'
+    	]
+    };
+  },
   render: function() {
     return (
       <div className="exps_box">
-				<div className="query">test</div>
-				<div className="pron">
-					<div className="pron_item">[yahei, xx]</div>
-					<div className="pron_item">英[sss]</div>
-					<div className="pron_item">美[fff]</div>
-				</div>
+				<div className="query">{this.state.query}</div>
+				{
+					!this.state.phonetic && !this.state.ukPhonetic && !this.usPhonetic ? '' : 
+						<div className="pron">
+							{this.state.phonetic ? <div className="pron_item">[{this.state.phonetic}]</div> : ''}
+							{this.state.ukPhonetic ? <div className="pron_item">英[{this.state.ukPhonetic}]</div> : ''}
+							{this.state.usPhonetic ? <div className="pron_item">美[{this.state.usPhonetic}]</div> : ''}
+						</div>
+				}
 				<div className="exps_title">释义 :</div>
-				<ul className="exps">
-					<li className="exp">cc</li>
-					<li className="exp">ss</li>
-					<li className="exp">ggg</li>
-				</ul>
+				{
+					!this.state.exps.length ? '' :
+						<ul className="exps">
+							{
+								this.state.exps.map((exp) => {
+									return (<li className="exp">{exp}</li>);
+								})
+							}
+						</ul>
+				}
 			</div>
     );
   }
@@ -62,14 +91,23 @@ const Exps = React.createClass({
  * 网络释义组件
  */
 const Nets = React.createClass({
+	getInitialState: function() {
+    return {nets: [
+    	{key: 'xxx', value: 'tttt'},
+    	{key: 'xx阿斯x', value: 'ttt阿斯达斯的t'},
+    	{key: 'xxx', value: 'tttt'}
+    ]};
+  },
   render: function() {
     return (
       <div className="nets_box">
 				<div className="nets_title">网络释义 :</div>
 				<ul className="nets">
-					<li className="net"><span className="net_key">xxx</span>:<span className="net_val">tttt</span></li>
-					<li className="net"><span className="net_key">xx阿斯x</span>:<span className="net_val">ttt阿斯达斯的t</span></li>
-					<li className="net"><span className="net_key">xxx</span>:<span className="net_val">tttt</span></li>
+					{
+						this.state.nets.map((net) => {
+							return (<li className="net"><span className="net_key">{net.key}</span>:<span className="net_val">{net.value}</span></li>);
+						})
+					}
 				</ul>
 			</div>
     );
@@ -80,31 +118,47 @@ const Nets = React.createClass({
  * 历史记录组件
  */
 const Hists = React.createClass({
+	getInitialState: function() {
+    return {hists: [
+    	'xxxxx',
+    	'xxxxx',
+    	'xxxxx',
+    	'xxxxx'
+    ]};
+  },
   render: function() {
     return (
       <div className="hists_box">
 				<ul className="hists">
-					<li className="hist">
-						<i className="icon-search"></i>
-						<a href="#" title="xxxxxxx">xxxxx</a>
-					</li>
-					<li className="hist">
-						<i className="icon-search"></i>
-						<a href="#" title="xxxxxxx">xxxxx</a>
-					</li>
-					<li className="hist">
-						<i className="icon-search"></i>
-						<a href="#" title="xxxxxxx">xxxxx</a>
-					</li>
-					<li className="hist">
-						<i className="icon-search"></i>
-						<a href="#" title="xxxxxxx">xxxxx</a>
-					</li>
+					{
+						this.state.hists.map((hist) => {
+							return (
+								<li className="hist">
+									<i className="icon-search"></i>
+									<a href="#" title={hist}>{hist}</a>
+								</li>
+							);
+						})
+					}
 				</ul>
 			</div>
     );
   }
 });
+
+var data = {
+	'query': 'test',
+	'basic': {
+		'phonetic': 'yahei, xx',
+		'uk-phonetic': 'sss',
+		'us-phonetic': 'fff',
+  	'explains': [
+  		'cc',
+  		'ss',
+  		'gg'
+  	]
+	}
+};
 
 /**
  * 整体布局组件
@@ -122,7 +176,7 @@ const Layouts = React.createClass({
 					</div>
 					<div className="bottom_block_cnt">
 						<div className="left_cnt">
-							<Exps />
+							{data.basic ? <Exps basic={data.basic} /> : ''}
 							<Nets />
 						</div>
 						<div className="right_cnt">
