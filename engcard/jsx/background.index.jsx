@@ -1,7 +1,12 @@
 'use strict';
 
-const hists = [];
 const handels = {};
+
+var hists = [];
+var db = localStorage.getItem('ENGCARD_HISTS');
+if(db) {
+  hists = JSON.parse(db);
+}
 
 /*var data = {
   'query': 'test',
@@ -40,43 +45,38 @@ const handels = {};
 };*/
 
 /**
- * 封装jsonp请求
+ * 封装ajax请求
  */
-function send(text, callback) {
-  if(!text.trim()) return;
-
-  // 压入历史记录
-  addHist(text);
+function send(text) {
+  if(text.trim()) {
+    addHist(text);
+  }
 
   text = encodeURIComponent(text);
 
-  let script = document.createElement('script');
-  script.src = `http://fanyi.youdao.com/openapi.do?keyfrom=engcard&key=1604033298&type=data&doctype=jsonp&callback=show&version=1.1&q=${text}`;
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(evt) {
+    if(xhr.readyState==4 && xhr.status==200) {
+      let result = xhr.responseText;
 
-  script.onload = function(e) {
-    // 加载成功
-    script.parentNode.removeChild(script);
+      try {
+        result = JSON.parse(result);
+      } catch(err) {
+        result = {};
+      }
+
+      if(result.errorCode) {
+        // 异常
+        dispatch('error', result.errorCode);
+      } else {
+        result.hists = hists;
+        dispatch('success', result);
+      }
+    }
   };
-  script.onerror = function(e) {
-    // 加载失败
-    script.parentNode.removeChild(script);
-  };
-
-  document.body.appendChild(script);
-}
-
-/**
- * jsonp数据返回
- */
-function show(ret) {
-  if(ret.errorCode) {
-    // 异常
-    dispatch('error', ret.errorCode);
-  } else {
-    ret.hists = hists;
-    dispatch('success', ret);
-  }
-}
+  xhr.open('GET', `https://fanyi.youdao.com/openapi.do?keyfrom=engcard&key=1604033298&type=data&doctype=json&version=1.1&q=${text}`);
+  xhr.send();
+};
 
 /**
  * 监听某个事件
@@ -109,6 +109,8 @@ function addHist(text) {
 
   while(hists.length >= 20) hists.unshift();
   hists.push(text);
+
+  localStorage.setItem('ENGCARD_HISTS', JSON.stringify(hists));
 }
 
 
@@ -120,10 +122,36 @@ const Ipts = React.createClass({
     let query = this.refs.searchIpt.value;
     send(query);
   },
+  enter: function(evt) {
+    let keyCode = evt.keyCode;
+    if(keyCode === 13) {
+      // 回车
+      this.search();
+    }
+  },
+  focus: function() {
+    this.setState({focus: true});
+  },
+  blur: function() {
+    this.setState({focus: false});
+  },
+  getInitialState: function() {
+    return {
+      focus: false,
+      query: ''
+    };
+  },
+  componentDidMount: function() {
+    this.refs.searchIpt.focus();
+    listen('updateQuery', (query) => {
+      this.setState({query});
+    });
+  },
   render: function() {
+    let {focus, query} = this.state;
     return (
-      <div className="ipt_box">
-				<input className="ipt" type="text" ref="searchIpt" placeholder="请输入您要查询的单词或语句" />
+      <div className={focus ? "ipt_box ipt_box_focus" : "ipt_box"}>
+				<input className="ipt" type="text" ref="searchIpt" placeholder="请输入您要查询的单词或语句" onFocus={this.focus} onBlur={this.blur} onKeyDown={this.enter} value={query} />
 				<button className="btn" type="button" onClick={this.search}><i className="icon-search"></i></button>
 			</div>
     );
@@ -210,6 +238,10 @@ const Nets = React.createClass({
  * 历史记录组件
  */
 const Hists = React.createClass({
+  search: function(query) {
+    dispatch('updateQuery', query.trim());
+    send(query);
+  },
   render: function() {
     let hists = this.props.hists;
     return (
@@ -218,7 +250,7 @@ const Hists = React.createClass({
 					{
 						hists.map((hist, index) => {
 							return (
-								<li key={index} className="hist">
+								<li key={index} className="hist" onClick={this.search.bind(this, hist)}>
 									<i className="icon-search"></i>
 									<a href="#" title={hist}>{hist}</a>
 								</li>
@@ -236,7 +268,7 @@ const Hists = React.createClass({
  */
 const Layouts = React.createClass({
   getInitialState: function() {
-    return {};
+    return {hists};
   },
   componentDidMount: function() {
     listen('success', (data) => {
@@ -273,3 +305,10 @@ ReactDOM.render(
   <Layouts />,
   document.getElementById('cnt')
 );
+
+// 默认选中最后一个
+if(hists.length) {
+  let query = hists[hists.length-1];
+  send(query);
+  dispatch('updateQuery', query.trim());
+}
